@@ -19,22 +19,22 @@ Aplicação web em JavaEE
 
 ## Critérios de avaliação
 - Funcionalidade
-    - Conformidade com Requisitos
-    - Corretude do Código
-    - Robustez
+    - [ ] Conformidade com Requisitos
+    - [ ] Corretude do Código
+    - [ ] Robustez
 - Qualidade do Código
-    - Legibilidade
-    - Organização
-    - Comentários
+    - [ ] Legibilidade
+    - [ ] Organização
+    - [ ] Comentários
 - Documentação
-    - Documentação Externa
+    - [ ] Documentação Externa
 - Extras
-    - Testes Unitários
-    - Performance
-    - Uso do GitHub
+    - [ ] Testes Unitários
+    - [ ] Performance
+    - [x] Uso do GitHub
 - Individuais
-    - Participação e Contribuição
-    - Comunicação
+    - [ ] Participação e Contribuição
+    - [x] Comunicação
 
 
 ## Prototipagem das telas
