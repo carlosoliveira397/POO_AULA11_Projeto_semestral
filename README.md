@@ -34,3 +34,10 @@ Aplicação web em JavaEE
 - Individuais
     - Participação e Contribuição
     - Comunicação
+
+
+## Prototipagem das telas
+
+![pesquisa](https://i.imgur.com/igHps9C.png)
+
+![cadastro](https://i.imgur.com/XBk3zbu.png)
