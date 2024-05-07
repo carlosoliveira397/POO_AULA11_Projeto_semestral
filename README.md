@@ -8,7 +8,7 @@ Aplicação web em JavaEE
 - [Guilherme Soares Brando](https://github.com/AceSkyes)
 
 **Tema:**
-- L.A.Rosa Imóveis
+- L.A.Rosa Imóveis :house:
 
 **Requisitos**
 - Cadastrar imóveis
