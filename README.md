@@ -11,11 +11,16 @@ Aplicação web em JavaEE
 **Tema:**
 - L.A.Rosa Imóveis :house:
 
-**Requisitos**
+**Requisitos:**
 - Cadastrar imóveis
 - Alterar imóveis
 - Desativar imóveis
 - Pesquisar imóveis
+
+
+**Diagrama de Caso de Uso:**
+
+ <img src="https://github.com/carlosoliveira397/POO_AULA11_Projeto_semestral/assets/36646274/cce38419-55a7-42c1-b8e9-8de33df11007" width="700px"/>
 
 ## Critérios de avaliação
 - Funcionalidade
