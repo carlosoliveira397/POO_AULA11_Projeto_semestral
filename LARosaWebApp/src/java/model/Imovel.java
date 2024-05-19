@@ -1,5 +1,9 @@
 package model;
 
+import java.util.ArrayList;
+import java.sql.*;
+import web.AppListener;
+
 public class Imovel {
     private String cd_imovel;
     private String nm_logradouro_imovel;
@@ -35,6 +39,22 @@ public class Imovel {
                 + ")";
     }
 
+    public static ArrayList<Imovel> getImovel()throws Exception{
+        ArrayList<Imovel> list = new ArrayList<>();
+        Connection con = AppListener.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT rowid, * FROM imovel");
+        while(rs.next()){
+            long rowid = rs.getLong("rowid");
+            String nm_logradouro_imovel = rs.getString("nm_logradouro_imovel");
+            String cd_cep_imovel = rs.getString("cd_cep_imovel");
+        }
+        rs.close();
+        stmt.close();
+        con.close();
+        return list;
+    }
+    
     public Imovel(String cd_imovel, String nm_logradouro_imovel, int cd_numero_imovel, String nm_bairro_imovel, String nm_cidade_imovel, char sg_uf_imovel, String cd_cep_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
         this.cd_imovel = cd_imovel;
         this.nm_logradouro_imovel = nm_logradouro_imovel;
