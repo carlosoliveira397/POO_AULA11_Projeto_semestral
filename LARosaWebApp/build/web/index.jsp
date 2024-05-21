@@ -10,8 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>L.A.Rosa imóveis</title>
+        <%@include file="WEB-INF/jspf/html-head-libs.jspf"%>
     </head>
     <body>
-        <h1>Hello</h1>
+        <%@include file="WEB-INF/jspf/navbar.jspf" %>
+        <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
     </body>
 </html>
