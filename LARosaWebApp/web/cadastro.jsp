@@ -20,65 +20,23 @@
 
         <form>
             
-            Ref
-            Data
-            Indicador
-            Captador
-            Operação
-            Outros
-            //casa aprto terreno comercial kit outros
-            Chaves
-            //uso res com loc outros
-            Status
-            //livre locado comodato temporada outros
-            Disposição
-            // fundo geminada isolada sobrado condominio outros
-            Endereço
-            Número
-            Complemento
-            Bairro
-            Cidade
-            UF
-            Imediações
-            Edifício
-            Idade
-            *Área Útil
-            *Área Construída
-            *Área Total
-            OBS de Medida
-            *Matrícula
-            *Inscrição IPTU
-            *Valor Venal
-            ADM Condomínio
-            Cel
-            Outros
-            Documentação
-            //proprietário possuidor compromissario inventariante laudemio
-            obs
-            *Local Referencia
-            Distância
-            Valor R$
-            Aceita Finan
-            //sim nao 
-            Parce Particular
-            //sim nao
-            *permuta
-            até
-            *Estorna
-            *Condomínio
-            *IPTU
-            //dorm suite closete salas ambiente terraço banheiro lavabo cozinha copa area serv despensa dep. empregada
-            //wc empregada quintal entrada garagem qts andares fundos frente salao festa salao idosos gourmet academia piscina
-            //inf camera seguranca aptos por andar elevadores serviço entrada serviço tv/internet outros portaria outros
-            obs interior exterior do imóvel
-            proprietário
-            resp
-            endereço
-            contato
-            motivo venda
-            vista
-            resp vista
-            
+            Referencial<input type="text" name="ref"><br>
+            CEP<input type="text" name="ref"><br>
+            Endereço<input type="text" name="log"><br>
+            Número<input type="number" name="num"><br>
+            Complemento<input type="text" name="cop"><br>
+            Bairro<input type="text" name="bai"><br>
+            Cidade<input type="text" name="cid"><br>
+            UF<input type="text" name="uf"><br><br>
+            Quantidade de:<br><br>
+            Dormitório(s): <input type="number" name="dor"><br> 
+            Suíte(s): <input type="number" name="sui"><br> 
+            Sala(s): <input type="number" name="sal"><br> 
+            Banheiro(s): <input type="number" name="ban"><br> 
+            Cozinha(s): <input type="number" name="coz"><br> 
+            Quintal(is): <input type="number" name="qui"><br><br>
+            Valor(R$)<input type="number" name="val"><br>
+            <input type="submit" name=""><br>
             
         </form>
         

@@ -28,7 +28,7 @@ public class Imovel {
                 + "nm_bairro_imovel VARCHAR(240) NOT NULL,"
                 + "nm_cidade_imovel VARCHAR(240) NOT NULL,"
                 + "sg_uf_imovel CHAR(2) NOT NULL,"
-                + "cd_cep_imovel VARCHAR(8) NOT NULL,"
+                + "cd_cep_imovel VARCHAR(8) NOT NULL," 
                 + "qt_sala_imovel NUMERIC(2),"
                 + "qt_dormitorio_imovel NUMERIC(2),"
                 + "qt_banheiro_imovel NUMERIC(2),"
