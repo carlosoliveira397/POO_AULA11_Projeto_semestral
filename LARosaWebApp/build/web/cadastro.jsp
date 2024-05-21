@@ -15,8 +15,8 @@
     <body>
         <%@include file="WEB-INF/jspf/navbar.jspf" %>
         <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
-
-        <h1>Ficha de Captação</h1>
+        
+                <h1>Ficha de Captação</h1>
 
         <form>
             
@@ -81,8 +81,7 @@
             
             
         </form>
-
-
+        
     </body>
 </html>
 
