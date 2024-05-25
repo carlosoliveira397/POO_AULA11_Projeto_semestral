@@ -1,3 +1,43 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<h2>Hello World!</h2>
+<div id="session">
+    
+</div>
+
+<script>
+    const shared = Vue.reactive({session: null});
+    
+    const session = Vue.createApp({
+        data(){
+            return{
+                shared: shared,
+                error: null,
+                data: null
+            }
+        },
+        methods: {
+            async request(url = "", method, data){
+                try{
+                    const response = await fetch(url, {
+                       method: method,
+                       headers: {"Content-Type":"application/json",},
+                       body: JSON.stringify(data)
+                    });
+                    if (response.status==200){
+                        return response.json();
+                    }else{
+                        this.error = response.statusText;
+                    }
+                }catch(e){
+                    this.error = e;
+                    return null;
+                }
+                  
+            },
+        },
+        mounted(){
+            
+        }      
+    });
+    session.mount('@session');
+</script>
