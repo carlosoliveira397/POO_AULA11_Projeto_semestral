@@ -13,10 +13,70 @@
     <title>L.A.Rosa imóveis</title>
     <%@include file="WEB-INF/jspf/html-head-libs.jspf"%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   </head>
   <body>
+    <%@include file="WEB-INF/jspf/header.jspf" %>
     <%@include file="WEB-INF/jspf/navbar.jspf" %>
     <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <div id="app" class="container-fluid m-2">
+        
+    </div>
+    <script>
+  /*     const app = Vue.createApp({
+           data() {
+               return {
+                   shared: shared,
+                   error: null,
+                   now: new Date(),
+                   newEndereco: '',
+                   newRef: '',
+                   newCEP: '',
+                   newNum: '',
+                   newBairro: '',
+                   newCidade: '',
+                   newUF: '',
+                   newCompl: '',
+                   qtDorm: '',
+                   qtsuite: '',
+                   qtsala: '',
+                   qtWC: '',
+                   qtCozi: '',
+                   qtQuintal: '',
+                   valor: '',
+                   list: [],
+               }
+           }, 
+            methods: {
+                async request(url = "", method, data){
+                    try{
+                        const response = await fetch(url, {
+                            method: method,
+                            headers: {"Content-Type":"application/json"},
+                            body: JSON.stringify(data)
+                        });
+                        if(response.status==200){
+                            return response.json();
+                        }else{
+                            this.error = response.statusText;
+                        }catch(e){
+                            this.error = e;
+                            return null;
+                        }
+                    },
+                }
+                
+            },
+            mounted() {
+                
+            }
+            
+        });
+        app.mount('#app')*/
+    </script>
+  
+   
   </body>
 </html>
