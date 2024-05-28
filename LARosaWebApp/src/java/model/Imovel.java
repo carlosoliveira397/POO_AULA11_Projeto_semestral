@@ -6,7 +6,7 @@ import web.AppListener;
 
 public class Imovel {
     private String cd_imovel;
-    private String cd_cep_imovel;
+    private int cd_cep_imovel;
     private int qt_sala_imovel;
     private int qt_dormitorio_imovel;
     private int qt_banheiro_imovel;
@@ -18,7 +18,7 @@ public class Imovel {
     public static String getCreateStatement(){
         return "CREATE TABLE IF NOT EXIST imovel("
                 + "cd_imovel INTEGER UNIQUE NOT NULL,"
-                + "cd_cep_imovel VARCHAR(8) NOT NULL," 
+                + "cd_cep_imovel INTEGER NOT NULL," 
                 + "qt_sala_imovel NUMERIC(2),"
                 + "qt_dormitorio_imovel NUMERIC(2),"
                 + "qt_banheiro_imovel NUMERIC(2),"
@@ -35,9 +35,8 @@ public class Imovel {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT rowid, * FROM imovel");
         while(rs.next()){
-            Imovel imv = new Imovel{
-                rs.getLong("rowid"),
-                rs.getLong("cd_imovel"),
+            Imovel imv = new Imovel(
+                rs.getString("cd_imovel"),
                 rs.getInt("cd_cep_imovel"),
                 rs.getInt("qt_sala_imovel"),
                 rs.getInt("qt_dormitorio_imovel"),
@@ -46,7 +45,7 @@ public class Imovel {
                 rs.getInt("qt_suite"),
                 rs.getInt("qt_quintal_imovel"),
                 rs.getDouble("vl_imovel")
-            };
+                );
             list.add(imv);
         }
         rs.close();
@@ -57,7 +56,7 @@ public class Imovel {
     
     public static void add addImovel()
     
-    public Imovel(String cd_imovel, String cd_cep_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
+    public Imovel(String cd_imovel, int cd_cep_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
         this.cd_imovel = cd_imovel;
         this.cd_cep_imovel = cd_cep_imovel;
         this.qt_sala_imovel = qt_sala_imovel;
@@ -77,11 +76,11 @@ public class Imovel {
         this.cd_imovel = cd_imovel;
     }
 
-    public String getCd_cep_imovel() {
+    public int getCd_cep_imovel() {
         return cd_cep_imovel;
     }
 
-    public void setCd_cep_imovel(String cd_cep_imovel) {
+    public void setCd_cep_imovel(int cd_cep_imovel) {
         this.cd_cep_imovel = cd_cep_imovel;
     }
 
