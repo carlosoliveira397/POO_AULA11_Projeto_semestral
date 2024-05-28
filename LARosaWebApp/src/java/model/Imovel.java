@@ -35,9 +35,8 @@ public class Imovel {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT rowid, * FROM imovel");
         while(rs.next()){
-            Imovel imv = new Imovel{
-                rs.getLong("rowid"),
-                rs.getLong("cd_imovel"),
+            Imovel imv = new Imovel(
+                rs.getString("cd_imovel"),
                 rs.getInt("cd_cep_imovel"),
                 rs.getInt("qt_sala_imovel"),
                 rs.getInt("qt_dormitorio_imovel"),
@@ -46,7 +45,7 @@ public class Imovel {
                 rs.getInt("qt_suite"),
                 rs.getInt("qt_quintal_imovel"),
                 rs.getDouble("vl_imovel")
-            };
+                );
             list.add(imv);
         }
         rs.close();
@@ -57,7 +56,7 @@ public class Imovel {
     
     public static void add addImovel()
     
-    public Imovel(String cd_imovel, String cd_cep_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
+    public Imovel(String cd_imovel, int cd_cep_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
         this.cd_imovel = cd_imovel;
         this.cd_cep_imovel = cd_cep_imovel;
         this.qt_sala_imovel = qt_sala_imovel;
