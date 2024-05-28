@@ -23,10 +23,6 @@
     
     <div id="app" class="container-fluid m-2">
         
-    </div>
-    <script>
-    </script>
-  
-   
+    </div>   
   </body>
 </html>
