@@ -15,7 +15,7 @@ public class Imovel {
     private double vl_imovel;
     
     public static String getCreateStatement(){
-        return "CREATE TABLE IF NOT EXIST imovel("
+        return "CREATE TABLE IF NOT EXISTS imovel("
                 + "cd_imovel INTEGER UNIQUE NOT NULL,"
                 + "qt_sala_imovel NUMERIC(2),"
                 + "qt_dormitorio_imovel NUMERIC(2),"
