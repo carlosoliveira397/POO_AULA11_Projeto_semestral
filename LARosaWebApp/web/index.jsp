@@ -25,56 +25,6 @@
         
     </div>
     <script>
-  /*     const app = Vue.createApp({
-           data() {
-               return {
-                   shared: shared,
-                   error: null,
-                   now: new Date(),
-                   newEndereco: '',
-                   newRef: '',
-                   newCEP: '',
-                   newNum: '',
-                   newBairro: '',
-                   newCidade: '',
-                   newUF: '',
-                   newCompl: '',
-                   qtDorm: '',
-                   qtsuite: '',
-                   qtsala: '',
-                   qtWC: '',
-                   qtCozi: '',
-                   qtQuintal: '',
-                   valor: '',
-                   list: [],
-               }
-           }, 
-            methods: {
-                async request(url = "", method, data){
-                    try{
-                        const response = await fetch(url, {
-                            method: method,
-                            headers: {"Content-Type":"application/json"},
-                            body: JSON.stringify(data)
-                        });
-                        if(response.status==200){
-                            return response.json();
-                        }else{
-                            this.error = response.statusText;
-                        }catch(e){
-                            this.error = e;
-                            return null;
-                        }
-                    },
-                }
-                
-            },
-            mounted() {
-                
-            }
-            
-        });
-        app.mount('#app')*/
     </script>
   
    
