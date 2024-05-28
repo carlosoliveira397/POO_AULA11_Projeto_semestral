@@ -6,7 +6,7 @@ import web.AppListener;
 
 public class Imovel {
     private String cd_imovel;
-    private String cd_cep_imovel;
+    private int cd_cep_imovel;
     private int qt_sala_imovel;
     private int qt_dormitorio_imovel;
     private int qt_banheiro_imovel;
@@ -18,7 +18,7 @@ public class Imovel {
     public static String getCreateStatement(){
         return "CREATE TABLE IF NOT EXIST imovel("
                 + "cd_imovel INTEGER UNIQUE NOT NULL,"
-                + "cd_cep_imovel VARCHAR(8) NOT NULL," 
+                + "cd_cep_imovel INTEGER NOT NULL," 
                 + "qt_sala_imovel NUMERIC(2),"
                 + "qt_dormitorio_imovel NUMERIC(2),"
                 + "qt_banheiro_imovel NUMERIC(2),"
@@ -76,11 +76,11 @@ public class Imovel {
         this.cd_imovel = cd_imovel;
     }
 
-    public String getCd_cep_imovel() {
+    public int getCd_cep_imovel() {
         return cd_cep_imovel;
     }
 
-    public void setCd_cep_imovel(String cd_cep_imovel) {
+    public void setCd_cep_imovel(int cd_cep_imovel) {
         this.cd_cep_imovel = cd_cep_imovel;
     }
 
