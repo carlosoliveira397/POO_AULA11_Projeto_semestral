@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : index
     Created on : 13 de mai. de 2024, 23:02:46
     Author     : Aluno
@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   </head>
   <body>
+      <h1>Hello World!</h1>
     <%@include file="WEB-INF/jspf/header.jspf" %>
     <%@include file="WEB-INF/jspf/navbar.jspf" %>
     <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>

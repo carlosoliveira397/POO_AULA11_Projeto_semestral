@@ -51,8 +51,31 @@ public class Imovel {
         return list;
     }
     
-    public static void addImovel(){
-    
+    public static void addImovel(String cd_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel)
+            throws Exception{
+        String SQL = "INSERT INTO imovel VALUES("
+                + "?" //cd_imovel
+                + ", ?" //qt_sala_imovel
+                + ", ?" //qt_dormitorio_imovel
+                + ", ?" //qt_banheiro_imovel
+                + ", ?" //qt_cozinha_imovel
+                + ", ?" //qt_suite_imovel
+                + ", ?" //qt_quintal_imovel
+                + ", ?" //vl_imovel
+                + ")";
+        Connection con = AppListener.getConnection();
+        PreparedStatement s = con.prepareStatement(SQL);
+        s.setString(1, cd_imovel); 
+        s.setInt(2, qt_sala_imovel);
+        s.setInt(3, qt_dormitorio_imovel);
+        s.setInt(4, qt_banheiro_imovel); 
+        s.setInt(5, qt_cozinha_imovel);
+        s.setInt(6, qt_suite_imovel);
+        s.setInt(7, qt_quintal_imovel);
+        s.setDouble(8, vl_imovel);
+        s.execute();
+        s.close();
+        con.close();
     }
     
     public Imovel(String cd_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
