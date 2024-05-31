@@ -8,75 +8,237 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>L.A.Rosa imóveis - Cadastro</title>
         <%@include file="WEB-INF/jspf/html-head-libs.jspf"%>
+        <style>
+            .radio-buttons-container {
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+            .radio-button {
+                display: inline-block;
+                position: relative;
+                cursor: pointer;
+            }
+            .radio-button__input {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            .radio-button__label {
+                display: inline-block;
+                padding-left: 30px;
+                margin-bottom: 10px;
+                position: relative;
+                font-size: 16px;
+                color: #333;
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            }
+            .radio-button__custom {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 2px solid #555;
+                transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            }
+            .radio-button__input:checked + .radio-button__label .radio-button__custom {
+                transform: translateY(-50%) scale(0.9);
+                border: 5px solid #4c8bf5;
+                color: #4c8bf5;
+            }
+            .radio-button__input:checked + .radio-button__label {
+                color: #4c8bf5;
+            }
+            .radio-button__label:hover .radio-button__custom {
+                transform: translateY(-50%) scale(1.2);
+                border-color: #4c8bf5;
+                box-shadow: 0 0 10px #4c8bf580;
+            }
+            button {
+                position: relative;
+                border: none;
+                background: transparent;
+                padding: 0;
+                cursor: pointer;
+                outline-offset: 4px;
+                transition: filter 250ms;
+                user-select: none;
+                touch-action: manipulation;
+            }
+
+            .shadow {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+                background: hsl(0deg 0% 0% / 0.25);
+                will-change: transform;
+                transform: translateY(2px);
+                transition: transform
+                    600ms
+                    cubic-bezier(.3, .7, .4, 1);
+            }
+
+            .edge {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+                background: linear-gradient(
+                    to left,
+                    hsl(108deg 50% 20%) 0%,
+                    hsl(108deg 50% 45%) 8%,
+                    hsl(108deg 50% 45%) 92%,
+                    hsl(108deg 50% 20%) 100%
+                    );
+            }
+
+            .front {
+                display: block;
+                position: relative;
+                padding: 12px 27px;
+                border-radius: 12px;
+                font-size: 1.1rem;
+                color: white;
+                background: hsl(100deg 50% 48%);
+                will-change: transform;
+                transform: translateY(-4px);
+                transition: transform
+                    600ms
+                    cubic-bezier(.3, .7, .4, 1);
+            }
+
+            button:hover {
+                filter: brightness(115%);
+            }
+
+            button:hover .front {
+                transform: translateY(-6px);
+                transition: transform
+                    250ms
+                    cubic-bezier(.3, .7, .4, 1.5);
+            }
+
+            button:active .front {
+                transform: translateY(-2px);
+                transition: transform 34ms;
+            }
+
+            button:hover .shadow {
+                transform: translateY(4px);
+                transition: transform
+                    250ms
+                    cubic-bezier(.3, .7, .4, 1.5);
+            }
+
+            button:active .shadow {
+                transform: translateY(1px);
+                transition: transform 34ms;
+            }
+
+            button:focus:not(:focus-visible) {
+                outline: none;
+            }
+        </style>
     </head>
     <body>
         <%@include file="WEB-INF/jspf/navbar.jspf" %>
         <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
      <div class="container mt-4">
-        <h1 class="text-center">Cadastro de Imóveis</h1>
+         <h1 class="text-center">Cadastro de Imóveis</h1><br>
         <form action="ImovelServlet" method="post">
             <div class="form-group">
-                <label for="tipo">Tipo de Imóvel:</label><br>
                 
                 <!-- radios -->
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="casa" value="Casa">
-                    <label class="form-check-label" for="casa">Casa</label>
+                <div class="radio-buttons-container">
+                        <label for="tipo">Tipo de Imóvel:</label>
+                        <div class="radio-button">
+                            <input name="tipo" id="radio_casa" class="radio-button__input" type="radio" value="Casa">
+                            <label for="radio_casa" class="radio-button__label">
+                                <span class="radio-button__custom"></span>
+                                Casa
+                            </label>
+                        </div>
+                        <div class="radio-button">
+                            <input name="tipo" id="radio_apartamento" class="radio-button__input" type="radio" value="Apartamento">
+                            <label for="radio_apartamento" class="radio-button__label">
+                                <span class="radio-button__custom"></span>
+                                Apartamento
+                            </label>
+                        </div>
+                        <div class="radio-button">
+                            <input name="tipo" id="radio_terreno" class="radio-button__input" type="radio" value="Terreno">
+                            <label for="radio_terreno" class="radio-button__label">
+                                <span class="radio-button__custom"></span>
+                                Terreno
+                            </label>
+                        </div>
+                        <div class="radio-button">
+                            <input name="tipo" id="radio_comercial" class="radio-button__input" type="radio" value="Comercial">
+                            <label for="radio_comercial" class="radio-button__label">
+                                <span class="radio-button__custom"></span>
+                                Comercial
+                            </label>
+                        </div>
+                        <div class="radio-button">
+                            <input name="tipo" id="radio_outro" class="radio-button__input" type="radio" value="Outro">
+                            <label for="radio_outro" class="radio-button__label">
+                                <span class="radio-button__custom"></span>
+                                Outro
+                            </label>
+                        </div>
+                    </div>
+                <!-- caixas de texto --><div class="form-group">
+                        <hr>
+                        <input type="text" class="form-control" id="referencial" name="referencial" placeholder="Referencial">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="apto" value="Apto">
-                    <label class="form-check-label" for="apto">Apartamento</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="terreno" value="Terreno">
-                    <label class="form-check-label" for="terreno">Terreno</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="comercial" value="Comercial">
-                    <label class="form-check-label" for="comercial">Comercial</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="kitnet" value="Kitnet">
-                    <label class="form-check-label" for="kitnet">Kitnet</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipo" id="outro" value="Outro">
-                    <label class="form-check-label" for="outro">Outro</label>
-                </div>
-                <!-- caixas de texto -->
                 <div class="form-group">
-                    <br>
-                    <input type="text" class="form-control" id="referencial" name="referencial" placeholder="Referencial">
+                    <input type="number" class="form-control" id="dormitorios" name="dormitorios" placeholder="Dormitórios">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                    <input type="number" class="form-control" id="suite" name="suite" placeholder="Suíte">
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" id="dormitorios" name="dormitorios" placeholder="Dormitórios">
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" id="suite" name="suite" placeholder="Suíte">
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" id="sala" name="sala" placeholder="Sala">
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" id="banheiro" name="banheiro" placeholder="Sala">
-            </div>
-            <div class="form-group">
-		<input type="number" class="form-control" id="cozinha" name="cozinha" placeholder="Cozinha">
-	    </div>
-	    <div class="form-group">
-		<input type="number" class="form-control" id="quintal" name="quintal" placeholder="Quintal">
-		</div>
-	    <div class="form-group">
-		<input type="number" class="form-control" id="valor" name="valor" placeholder="Valor do Imóvel">
-	    </div>
-		<button type="submit" class="btn btn-primary">Salvar</button>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="sala" name="sala" placeholder="Sala">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="banheiro" name="banheiro" placeholder="Banheiro">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="cozinha" name="cozinha" placeholder="Cozinha">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="quintal" name="quintal" placeholder="Quintal">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="valor" name="valor" placeholder="Valor do Imóvel">
+                </div><hr>
+                 <div class="d-grid gap-2"> 
+                    <button>
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front text"> Salvar
+                        </span>
+                    </button>
+                </div>
 	</form>
     </div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
