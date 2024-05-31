@@ -1,5 +1,7 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
         <i class="bi bi-house-door-fill"></i>
