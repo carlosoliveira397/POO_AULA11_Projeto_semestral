@@ -88,7 +88,7 @@ public class Imovel {
                 + "qt_cozinha_imovel = ?,"
                 + "qt_suite_imovel = ?,"
                 + "qt_quintal_imovel = ?,"
-                + "vl_imovel = ?";
+                + "vl_imovel = ? WHERE cd_imovel = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, cd_imovel);
                 stmt.setInt(2, qt_sala_imovel);
