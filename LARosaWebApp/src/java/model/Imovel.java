@@ -103,6 +103,16 @@ public class Imovel {
                 con.close();
     }
     
+    public static void deleteImovel(long rowid) throws Exception{
+        Connection con = AppListener.getConnection();
+        String sql = "DELETE FROM imovel WHERE rowid = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setLong(1, rowid);
+        stmt.execute();
+        stmt.close();
+        con.close();
+    }
+    
     public Imovel(String cd_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
         this.cd_imovel = cd_imovel;
         this.qt_sala_imovel = qt_sala_imovel;
