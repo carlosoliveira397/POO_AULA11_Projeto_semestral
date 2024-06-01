@@ -78,6 +78,31 @@ public class Imovel {
         con.close();
     }
     
+    public static void updateImovel(String cd_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) throws Exception{
+        Connection con = AppListener.getConnection();
+        String sql = "UPDATE imovel SET"
+                + "cd_imovel = ?,"
+                + "qt_sala_imovel = ?,"
+                + "qt_dormitorio_imovel = ?,"
+                + "qt_banheiro_imovel = ?,"
+                + "qt_cozinha_imovel = ?,"
+                + "qt_suite_imovel = ?,"
+                + "qt_quintal_imovel = ?,"
+                + "vl_imovel = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1, cd_imovel);
+                stmt.setInt(2, qt_sala_imovel);
+                stmt.setInt(3, qt_dormitorio_imovel);
+                stmt.setInt(4, qt_banheiro_imovel);
+                stmt.setInt(5, qt_cozinha_imovel);
+                stmt.setInt(6, qt_suite_imovel);
+                stmt.setInt(7, qt_quintal_imovel);
+                stmt.setDouble(8, vl_imovel);
+                stmt.execute();
+                stmt.close();
+                con.close();
+    }
+    
     public Imovel(String cd_imovel, int qt_sala_imovel, int qt_dormitorio_imovel, int qt_banheiro_imovel, int qt_cozinha_imovel, int qt_suite_imovel, int qt_quintal_imovel, double vl_imovel) {
         this.cd_imovel = cd_imovel;
         this.qt_sala_imovel = qt_sala_imovel;
