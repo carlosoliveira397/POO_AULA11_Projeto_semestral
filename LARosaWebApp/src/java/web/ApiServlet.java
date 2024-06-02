@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
+import model.Imovel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 @WebServlet(name = "ApiServlet", urlPatterns = {"/api/*"})
@@ -62,5 +64,39 @@ public class ApiServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void processImovel(JSONObject file, HttpServletRequest request, HttpServletResponse response) throws Exception{
+        if(request.getMethod().toLowerCase().equals("get")){
+            file.put("list", new JSONArray(Imovel.getImovel()));
+        }else if(request.getMethod().toLowerCase().equals("post")){
+            JSONObject body = getJSONBody(request.getReader());
+            String cd_imovel = body.getString("cd_imovel");
+            int qt_sala_imovel = body.getInt("qt_sala_imovel");
+            int qt_dormitorio_imovel = body.getInt("qt_dormitorio_imovel");
+            int qt_banheiro_imovel = body.getInt("qt_banheiro_imovel");
+            int qt_cozinha_imovel = body.getInt("qt_cozinha_imovel");
+            int qt_suite_imovel = body.getInt("qt_suite_imovel");
+            int qt_quintal_imovel = body.getInt("qt_quintal_imovel");
+            double vl_imovel = body.getDouble("vl_imovel");
+            Imovel.addImovel(cd_imovel, qt_sala_imovel, qt_dormitorio_imovel, qt_banheiro_imovel, qt_cozinha_imovel, qt_suite_imovel, qt_quintal_imovel, vl_imovel);
+        }else if(request.getMethod().toLowerCase().equals("put")){
+            JSONObject body = getJSONBody(request.getReader());
+            String cd_imovel = body.getString("cd_imovel");
+            int qt_sala_imovel = body.getInt("qt_sala_imovel");
+            int qt_dormitorio_imovel = body.getInt("qt_dormitorio_imovel");
+            int qt_banheiro_imovel = body.getInt("qt_banheiro_imovel");
+            int qt_cozinha_imovel = body.getInt("qt_cozinha_imovel");
+            int qt_suite_imovel = body.getInt("qt_suite_imovel");
+            int qt_quintal_imovel = body.getInt("qt_quintal_imovel");
+            double vl_imovel = body.getDouble("vl_imovel");
+            Imovel.updateImovel(cd_imovel, qt_sala_imovel, qt_dormitorio_imovel, qt_banheiro_imovel, qt_cozinha_imovel, qt_suite_imovel, qt_quintal_imovel, vl_imovel);
+        }else if(request.getMethod().toLowerCase().equals("delete")){
+            Long id = Long.parseLong(request.getParameter("id"));
+            Imovel.deleteImovel(id);
+        }else{
+            response.sendError(405, "Method not allowed");
+            
+        }
+    }
 
 }
