@@ -37,6 +37,11 @@
                 position: relative;
                 z-index: 2;
             }
+            table{
+                background-color: #FFFFFF !important;
+                border: 4px solid #D3BB0C! important;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
@@ -46,7 +51,44 @@
             <%@include file="WEB-INF/jspf/header.jspf" %>
             <%@include file="WEB-INF/jspf/navbar.jspf" %>
             <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
-            <div id="app" class="container-fluid m-2">
+            <div id="app" class="container-fluid m-1">
+                <br>
+                <ul class="list-group list-group-flush">       
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">REF</th>
+                                <th scope="col">CEP</th>
+                                <th scope="col">DORMITÓRIOS</th>
+                                <th scope="col">SUÍTE</th>
+                                <th scope="col">SALA</th>
+                                <th scope="col">BANHEIRO</th>
+                                <th scope="col">COZINHA</th>
+                                <th scope="col">QUINTAL</th>
+                                <th class="text-end" scope="col">VALOR</th>
+                                <th scope="col">EDITAR/DELETAR</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1.000</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-info">Editar</button>
+                                    <button type="button" class="btn btn-outline-danger">Deletar</button>
+                                </td>                        
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
             </div>   
         </div>
          <script>
