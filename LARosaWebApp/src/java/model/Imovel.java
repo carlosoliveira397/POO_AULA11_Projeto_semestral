@@ -39,7 +39,7 @@ public class Imovel {
                 rs.getInt("qt_dormitorio_imovel"),
                 rs.getInt("qt_banheiro_imovel"),
                 rs.getInt("qt_cozinha_imovel"),
-                rs.getInt("qt_suite"),
+                rs.getInt("qt_suite_imovel"),
                 rs.getInt("qt_quintal_imovel"),
                 rs.getDouble("vl_imovel")
                 );

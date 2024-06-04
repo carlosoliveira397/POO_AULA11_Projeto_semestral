@@ -193,7 +193,6 @@
                 <h1 class="text-center">Cadastro de Imóveis</h1><br>
                 <form action="ImovelServlet" method="post">
                     <div class="form-group">
-                        <h1>teste2</h1>
                         <!-- radios -->
                         <div class="radio-buttons-container">
                             <label for="tipo">Tipo de Imóvel:</label>
@@ -287,15 +286,49 @@
                         newSuite: 0, 
                         newQuintal: 0,
                         newValor: 0.0,
-                        list: [],
-                    }
+                    };
                 },
                 methods: {
+                    async request(url = "", method, imovel) {
+                        try{
+                            const response = await fetch(url, {
+                                method: method,
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify(imovel)
+                            });
+                            if(response.status==200){
+                                return response.json();
+                            }else{
+                                this.error = response.statusText;
+                            }
+                        } catch(e){
+                            this.error = e;
+                            return null;
+                        }
+                    },
+
+                    async addImovel() {
+                        const data = await this.request("/LARosaWebApp/api/imovel", "POST", {cd_imovel: this.newCodigo, qt_sala_imovel: this.newSala, qt_dormitorio_imovel: this.newDormitorio, qt_banheiro_imovel: this.newBanheiro, qt_cozinha_imovel: this.newCozinha, qt_suite_imovel: this.newSuite, qt_quintal_imovel: this.newQuintal, vl_imovel: this.newValor});
+                        if(imovel) {
+                            this.newCodigo = '';
+                            this.newSala = 0;
+                            this.newDormitorio = 0;
+                            this.newBanheiro = 0;
+                            this.newCozinha = 0;
+                            this.newSuite = 0;
+                            this.newQuintal = 0;
+                            this.newValor = 0.0;
+                            await this.loadList();
+                        }
+                    },
                     
+                },
+                mounted() {
+                    this.loadList();
                 }
-                        
-                        
-                        
+            });
+            app.mount('#app');
+        </script>
     </body>
 </html>
 
