@@ -193,7 +193,7 @@
                 <h1 class="text-center">Cadastro de Imóveis</h1><br>
                 <form action="ImovelServlet" method="post">
                     <div class="form-group">
-                        <h1> teste de Server </h1>
+                        <h1>teste2</h1>
                         <!-- radios -->
                         <div class="radio-buttons-container">
                             <label for="tipo">Tipo de Imóvel:</label>
