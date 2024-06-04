@@ -48,6 +48,68 @@
             <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
             <div id="app" class="container-fluid m-2">
             </div>   
-        </div>   
+        </div>
+         <script>
+            const app = Vue.createApp({
+                imovel() {
+                    return {
+                        error: null,
+                        newCodigo: '', 
+                        newSala: 0, 
+                        newDormitorio: 0, 
+                        newBanheiro: 0, 
+                        newCozinha: 0, 
+                        newSuite: 0, 
+                        newQuintal: 0,
+                        newValor: 0.0,
+                        list: [],
+                    }
+                },
+                methods: {
+                    async request(url = "", method, imovel) {
+                        try{
+                            const response = await fetch(url, {
+                                method: method,
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify(imovel)
+                            });
+                            if(response.status==200){
+                                return response.json();
+                            }else{
+                                this.error = response.statusText;
+                            }
+                        } catch(e){
+                            this.error = e;
+                            return null;
+                        }
+                    },
+                    async loadList() {
+                        const imovel = await this.request("/LARosaWebApp/api/imovel", "GET");
+                        if(imovel) {
+                            this.list = imovel.list;
+                        }
+                    },
+                    async addImovel() {
+                        const data = await this.request("/LARosaWebApp/api/imovel", "POST", {cd_imovel: this.newCodigo, qt_sala_imovel: this.newSala, qt_dormitorio_imovel: this.newDormitorio, qt_banheiro_imovel: this.newBanheiro, qt_cozinha_imovel: this.newCozinha, qt_suite_imovel: this.newSuite, qt_quintal_imovel: this.newQuintal, vl_imovel: this.newValor});
+                        if(imovel) {
+                            this.newCodigo = '';
+                            this.newSala = 0;
+                            this.newDormitorio = 0;
+                            this.newBanheiro = 0;
+                            this.newCozinha = 0;
+                            this.newSuite = 0;
+                            this.newQuintal = 0;
+                            this.newValor = 0.0;
+                            await this.loadList();
+                        }
+                    },
+                    
+                },
+                mounted() {
+                    this.loadList();
+                }
+            });
+            app.mount('#app');
+        </script>
     </body>
 </html>
