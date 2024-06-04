@@ -36,7 +36,7 @@
                 margin-bottom: 10px;
                 position: relative;
                 font-size: 16px;
-                color: #333;
+                color: #FFFFFF;
                 cursor: pointer;
                 transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
             }
@@ -48,21 +48,21 @@
                 width: 20px;
                 height: 20px;
                 border-radius: 50%;
-                border: 2px solid #555;
+                border: 2px solid #FFFFFF;
                 transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
             }
             .radio-button__input:checked + .radio-button__label .radio-button__custom {
                 transform: translateY(-50%) scale(0.9);
-                border: 5px solid #4c8bf5;
-                color: #4c8bf5;
+                border: 5px solid #FFE88A;
+                color: #FFE88A;
             }
             .radio-button__input:checked + .radio-button__label {
-                color: #4c8bf5;
+                color: #FFE88A;
             }
             .radio-button__label:hover .radio-button__custom {
                 transform: translateY(-50%) scale(1.2);
-                border-color: #4c8bf5;
-                box-shadow: 0 0 10px #4c8bf580;
+                border-color: #FFE88A;
+                box-shadow: 0 0 10px #FFE88A80;
             }
             button {
                 position: relative;
@@ -100,10 +100,10 @@
                 border-radius: 12px;
                 background: linear-gradient(
                     to left,
-                    hsl(108deg 50% 20%) 0%,
-                    hsl(108deg 50% 45%) 8%,
-                    hsl(108deg 50% 45%) 92%,
-                    hsl(108deg 50% 20%) 100%
+                    hsl(45deg, 100%, 50%) 0%, 
+                    hsl(45deg, 100%, 70%) 8%,
+                    hsl(45deg, 100%, 70%) 92%,
+                    hsl(45deg, 100%, 90%) 100%
                     );
             }
 
@@ -113,8 +113,8 @@
                 padding: 12px 27px;
                 border-radius: 12px;
                 font-size: 1.1rem;
-                color: white;
-                background: hsl(100deg 50% 48%);
+                color: black;
+                background: hsl(45deg, 100%, 70%);
                 will-change: transform;
                 transform: translateY(-4px);
                 transition: transform
@@ -153,9 +153,40 @@
             button:focus:not(:focus-visible) {
                 outline: none;
             }
+            
+             body {
+                background-image: url('https://hotelrouxinol.com.br/wp-content/uploads/2020/03/original-ebd6426cddff7653bef6599802b56e11.jpeg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+            }
+
+            .opacity-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(100, 100, 100, 0.6); /* Ajuste para a opacidade desejada */
+                z-index: 1;
+            }
+
+            .content {
+                position: relative;
+                z-index: 2;
+            }            
+             h1, label {
+            color: #FFFFFF;
+            text-align: center;
+        }
         </style>
     </head>
     <body>
+        <div class="opacity-overlay"></div>
+        <div class="content">
         <%@include file="WEB-INF/jspf/navbar.jspf" %>
         <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
      <div class="container mt-4">
@@ -240,6 +271,7 @@
                     </button>
                 </div>
 	</form>
+    </div>
     </div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
