@@ -11,6 +11,7 @@
         <%@include file="WEB-INF/jspf/html-head-libs.jspf"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>L.A.Rosa imóveis - Cadastro</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <style>
             .radio-buttons-container {
                 display: flex;
