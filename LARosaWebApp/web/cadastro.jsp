@@ -193,7 +193,7 @@
                 <h1 class="text-center">Cadastro de Imóveis</h1><br>
                 <form action="ImovelServlet" method="post">
                     <div class="form-group">
-
+                        <h1> teste de Server </h1>
                         <!-- radios -->
                         <div class="radio-buttons-container">
                             <label for="tipo">Tipo de Imóvel:</label>
@@ -274,6 +274,28 @@
                 </form>
             </div>
         </div>
+            <script>
+            const app = Vue.createApp({
+                imovel() {
+                    return {
+                        error: null,
+                        newCodigo: '', 
+                        newSala: 0, 
+                        newDormitorio: 0, 
+                        newBanheiro: 0, 
+                        newCozinha: 0, 
+                        newSuite: 0, 
+                        newQuintal: 0,
+                        newValor: 0.0,
+                        list: [],
+                    }
+                },
+                methods: {
+                    
+                }
+                        
+                        
+                        
     </body>
 </html>
 
