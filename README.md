@@ -32,7 +32,7 @@ Aplicação web em JavaEE
     - [ ] Organização
     - [ ] Comentários
 - Documentação
-    - [ ] Documentação Externa
+    - [x] Documentação Externa
 - Extras
     - [ ] Testes Unitários
     - [ ] Performance
