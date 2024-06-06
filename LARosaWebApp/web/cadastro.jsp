@@ -187,129 +187,144 @@
     <body>
         <div class="opacity-overlay"></div>
         <div class="content">
-            <%@include file="WEB-INF/jspf/navbar.jspf" %>
+            <%@include file="WEB-INF/jspf/navbar.jspf"%><br>
             <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
-            <div class="container mt-4">
-                <h1 class="text-center">Cadastro de Imóveis</h1><br>
-                <form action="ImovelServlet" method="post">
-                    <div class="form-group">
-                        <!-- radios -->
-                        <div class="radio-buttons-container">
-                            <label for="tipo">Tipo de Imóvel:</label>
-                            <div class="radio-button">
-                                <input name="tipo" id="radio_casa" class="radio-button__input" type="radio" value="Casa">
-                                <label for="radio_casa" class="radio-button__label">
-                                    <span class="radio-button__custom"></span>
-                                    Casa
-                                </label>
-                            </div>
-                            <div class="radio-button">
-                                <input name="tipo" id="radio_apartamento" class="radio-button__input" type="radio" value="Apartamento">
-                                <label for="radio_apartamento" class="radio-button__label">
-                                    <span class="radio-button__custom"></span>
-                                    Apartamento
-                                </label>
-                            </div>
-                            <div class="radio-button">
-                                <input name="tipo" id="radio_terreno" class="radio-button__input" type="radio" value="Terreno">
-                                <label for="radio_terreno" class="radio-button__label">
-                                    <span class="radio-button__custom"></span>
-                                    Terreno
-                                </label>
-                            </div>
-                            <div class="radio-button">
-                                <input name="tipo" id="radio_comercial" class="radio-button__input" type="radio" value="Comercial">
-                                <label for="radio_comercial" class="radio-button__label">
-                                    <span class="radio-button__custom"></span>
-                                    Comercial
-                                </label>
-                            </div>
-                            <div class="radio-button">
-                                <input name="tipo" id="radio_outro" class="radio-button__input" type="radio" value="Outro">
-                                <label for="radio_outro" class="radio-button__label">
-                                    <span class="radio-button__custom"></span>
-                                    Outro
-                                </label>
-                            </div>
-                        </div>
-                        <!-- caixas de texto -->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center">Cadastro de Imóveis</h1><br>
+                    <form id="imovelForm" action="ImovelServlet" method="post" class="needs-validation" novalidate>
                         <div class="form-group">
-                            <hr>
-                            <input type="text" class="form-control" id="referencial" name="referencial" placeholder="Referencial">
+
+                            <div class="radio-buttons-container">
+                                <label for="tipo">Tipo de Imóvel:</label>
+                                <div class="radio-button">
+                                    <input name="tipo" id="radio_casa" class="radio-button__input" type="radio" value="Casa" required>
+                                    <label for="radio_casa" class="radio-button__label">
+                                        <span class="radio-button__custom"></span>
+                                        Casa
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <input name="tipo" id="radio_apartamento" class="radio-button__input" type="radio" value="Apartamento">
+                                    <label for="radio_apartamento" class="radio-button__label">
+                                        <span class="radio-button__custom"></span>
+                                        Apartamento
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <input name="tipo" id="radio_terreno" class="radio-button__input" type="radio" value="Terreno">
+                                    <label for="radio_terreno" class="radio-button__label">
+                                        <span class="radio-button__custom"></span>
+                                        Terreno
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <input name="tipo" id="radio_comercial" class="radio-button__input" type="radio" value="Comercial">
+                                    <label for="radio_comercial" class="radio-button__label">
+                                        <span class="radio-button__custom"></span>
+                                        Comercial
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <input name="tipo" id="radio_outro" class="radio-button__input" type="radio" value="Outro">
+                                    <label for="radio_outro" class="radio-button__label">
+                                        <span class="radio-button__custom"></span>
+                                        Outro
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <hr>
+                                <input type="text" class="form-control" id="referencial" name="referencial" placeholder="Referencial" required>
+                                <div class="invalid-feedback">Por favor, insira o Referencial do imóvel.</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
+                                <div class="invalid-feedback">Por favor, insira o CEP do imóvel.</div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                            <input type="number" class="form-control" id="dormitorios" name="dormitorios" placeholder="Dormitórios" required>
+                            <div class="invalid-feedback">Por favor, insira o número de dormitórios.</div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="dormitorios" name="dormitorios" placeholder="Dormitórios">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="suite" name="suite" placeholder="Suíte">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="sala" name="sala" placeholder="Sala">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="banheiro" name="banheiro" placeholder="Banheiro">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="cozinha" name="cozinha" placeholder="Cozinha">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="quintal" name="quintal" placeholder="Quintal">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="valor" name="valor" placeholder="Valor do Imóvel">
-                    </div><hr>
-                    <div class="d-grid gap-2"> 
-                        <button>
-                            <span class="shadow"></span>
-                            <span class="edge"></span>
-                            <span class="front text"> Salvar
-                            </span>
-                        </button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="suite" name="suite" placeholder="Suíte" required>
+                            <div class="invalid-feedback">Por favor, insira o número de suítes.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="sala" name="sala" placeholder="Sala" required>
+                            <div class="invalid-feedback">Por favor, insira o número de salas.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="banheiro" name="banheiro" placeholder="Banheiro" required>
+                            <div class="invalid-feedback">Por favor, insira o número de banheiros.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="cozinha" name="cozinha" placeholder="Cozinha" required>
+                            <div class="invalid-feedback">Por favor, insira o número de cozinhas.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="quintal" name="quintal" placeholder="Quintal" required>
+                            <div class="invalid-feedback">Por favor, insira informações sobre o quintal.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Imóvel" required>
+                            <div class="invalid-feedback">Por favor, insira o valor do imóvel.</div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="d-grid gap-2"> 
+                                <button>
+                                    <span class="shadow"></span>
+                                    <span class="edge"></span>
+                                    <span class="front text"> Salvar
+                                    </span>
+                                </button>
+                            </div>   
+                        </div>   
+                    </form>
+                </div>
             </div>
         </div>
-            <script>
+        <script>
             const app = Vue.createApp({
                 imovel() {
                     return {
                         error: null,
-                        newCodigo: '', 
-                        newSala: 0, 
-                        newDormitorio: 0, 
-                        newBanheiro: 0, 
-                        newCozinha: 0, 
-                        newSuite: 0, 
+                        newCodigo: '',
+                        newSala: 0,
+                        newDormitorio: 0,
+                        newBanheiro: 0,
+                        newCozinha: 0,
+                        newSuite: 0,
                         newQuintal: 0,
                         newValor: 0.0,
                     };
                 },
                 methods: {
                     async request(url = "", method, imovel) {
-                        try{
+                        try {
                             const response = await fetch(url, {
                                 method: method,
                                 headers: {"Content-Type": "application/json"},
                                 body: JSON.stringify(imovel)
                             });
-                            if(response.status==200){
+                            if (response.status == 200) {
                                 return response.json();
-                            }else{
+                            } else {
                                 this.error = response.statusText;
                             }
-                        } catch(e){
+                        } catch (e) {
                             this.error = e;
                             return null;
-                        }
+                    }
                     },
 
                     async addImovel() {
                         const data = await this.request("/LARosaWebApp/api/imovel", "POST", {cd_imovel: this.newCodigo, qt_sala_imovel: this.newSala, qt_dormitorio_imovel: this.newDormitorio, qt_banheiro_imovel: this.newBanheiro, qt_cozinha_imovel: this.newCozinha, qt_suite_imovel: this.newSuite, qt_quintal_imovel: this.newQuintal, vl_imovel: this.newValor});
-                        if(imovel) {
+                        if (imovel) {
                             this.newCodigo = '';
                             this.newSala = 0;
                             this.newDormitorio = 0;
@@ -321,13 +336,51 @@
                             await this.loadList();
                         }
                     },
-                    
+
                 },
                 mounted() {
                     this.loadList();
                 }
             });
             app.mount('#app');
+        </script>
+        <script>
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    var forms = document.getElementsByClassName('needs-validation');
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+            
+
+            document.getElementById('cep').addEventListener('input', function (e) {
+                let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,3})/);
+                e.target.value = x[1] + (x[2] ? '-' + x[2] : '');
+            });
+
+            const naturalNumberFields = ['referencial', 'dormitorios', 'suite', 'sala', 'banheiro', 'cozinha', 'quintal'];
+            naturalNumberFields.forEach(id => {
+                document.getElementById(id).addEventListener('input', function (e) {
+                    e.target.value = e.target.value.replace(/\D/g, '');
+                });
+            });
+
+             document.getElementById('valor').addEventListener('input', function (e) {
+                    let a = e.target.value.replace(/\D/g, '');
+                    a = (a / 100).toFixed(2) + '';
+                    a = a.replace(".", ",");
+                    a = a.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                    e.target.value = a;
+                });
         </script>
     </body>
 </html>
