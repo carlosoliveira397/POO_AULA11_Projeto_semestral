@@ -16,7 +16,7 @@ public class Imovel {
     
     public static String getCreateStatement(){
         return "CREATE TABLE IF NOT EXISTS imovel("
-                + "cd_imovel INTEGER UNIQUE NOT NULL,"
+                + "cd_imovel VARCHAR(14) UNIQUE NOT NULL,"
                 + "qt_sala_imovel NUMERIC(2),"
                 + "qt_dormitorio_imovel NUMERIC(2),"
                 + "qt_banheiro_imovel NUMERIC(2),"
