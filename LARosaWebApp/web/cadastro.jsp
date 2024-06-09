@@ -194,52 +194,6 @@
                     <h1 class="text-center">Cadastro de Imóveis</h1><br>
                     <form id="imovelForm" action="ImovelServlet" method="post" class="needs-validation" novalidate>
                         <div class="form-group">
-
-                            <div class="radio-buttons-container">
-                                <label for="tipo">Tipo de Imóvel:</label>
-                                <div class="radio-button">
-                                    <input name="tipo" id="radio_casa" class="radio-button__input" type="radio" value="Casa" required>
-                                    <label for="radio_casa" class="radio-button__label">
-                                        <span class="radio-button__custom"></span>
-                                        Casa
-                                    </label>
-                                </div>
-                                <div class="radio-button">
-                                    <input name="tipo" id="radio_apartamento" class="radio-button__input" type="radio" value="Apartamento">
-                                    <label for="radio_apartamento" class="radio-button__label">
-                                        <span class="radio-button__custom"></span>
-                                        Apartamento
-                                    </label>
-                                </div>
-                                <div class="radio-button">
-                                    <input name="tipo" id="radio_terreno" class="radio-button__input" type="radio" value="Terreno">
-                                    <label for="radio_terreno" class="radio-button__label">
-                                        <span class="radio-button__custom"></span>
-                                        Terreno
-                                    </label>
-                                </div>
-                                <div class="radio-button">
-                                    <input name="tipo" id="radio_comercial" class="radio-button__input" type="radio" value="Comercial">
-                                    <label for="radio_comercial" class="radio-button__label">
-                                        <span class="radio-button__custom"></span>
-                                        Comercial
-                                    </label>
-                                </div>
-                                <div class="radio-button">
-                                    <input name="tipo" id="radio_outro" class="radio-button__input" type="radio" value="Outro">
-                                    <label for="radio_outro" class="radio-button__label">
-                                        <span class="radio-button__custom"></span>
-                                        Outro
-                                    </label>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <hr>
-                                <input type="text" class="form-control" id="referencial" name="referencial" placeholder="Referencial" required>
-                                <div class="invalid-feedback">Por favor, insira o Referencial do imóvel.</div>
-                            </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
                                 <div class="invalid-feedback">Por favor, insira o CEP do imóvel.</div>
@@ -289,60 +243,35 @@
             </div>
         </div>
         <script>
-            const app = Vue.createApp({
-                imovel() {
-                    return {
-                        error: null,
-                        newCodigo: '',
-                        newSala: 0,
-                        newDormitorio: 0,
-                        newBanheiro: 0,
-                        newCozinha: 0,
-                        newSuite: 0,
-                        newQuintal: 0,
-                        newValor: 0.0,
-                    };
-                },
-                methods: {
-                    async request(url = "", method, imovel) {
-                        try {
-                            const response = await fetch(url, {
-                                method: method,
-                                headers: {"Content-Type": "application/json"},
-                                body: JSON.stringify(imovel)
-                            });
-                            if (response.status == 200) {
-                                return response.json();
-                            } else {
-                                this.error = response.statusText;
-                            }
-                        } catch (e) {
-                            this.error = e;
-                            return null;
+            async function request(url = "", methd, data) {
+                const response = await fetch(url, {
+                    method: methd,
+                    headers: {"Content-Type": "application/json", },
+                    body: JSON.stringify(data)
+                });
+                return response.json();
+            }
+            
+            function tasks() {
+                return {
+                    newTaskTitle: '',
+                    list: [],
+                    async loadTasks() {
+                        request("/LARosaWebApp/api/imovel", "GET").then((data) => {
+                            this.list = data.list;
+                        });
+                    }, async addTask() {
+                        request("/LARosaWebApp/api/imovel", "POST", { title: this.newTaskTitle }).then((data) => {
+                            this.newTaskTitle = '';
+                            this.list = data.list;
+                        });
+                    }, async removeTask(taskTitle) {
+                        request("/LARosaWebApp/api/imovel?id="+taskTitle, "DELETE").then((data) => {
+                            this.list = data.list
+                        });
                     }
-                    },
-
-                    async addImovel() {
-                        const data = await this.request("/LARosaWebApp/api/imovel", "POST", {cd_imovel: this.newCodigo, qt_sala_imovel: this.newSala, qt_dormitorio_imovel: this.newDormitorio, qt_banheiro_imovel: this.newBanheiro, qt_cozinha_imovel: this.newCozinha, qt_suite_imovel: this.newSuite, qt_quintal_imovel: this.newQuintal, vl_imovel: this.newValor});
-                        if (imovel) {
-                            this.newCodigo = '';
-                            this.newSala = 0;
-                            this.newDormitorio = 0;
-                            this.newBanheiro = 0;
-                            this.newCozinha = 0;
-                            this.newSuite = 0;
-                            this.newQuintal = 0;
-                            this.newValor = 0.0;
-                            await this.loadList();
-                        }
-                    },
-
-                },
-                mounted() {
-                    this.loadList();
                 }
-            });
-            app.mount('#app');
+            } 
         </script>
         <script>
             (function () {

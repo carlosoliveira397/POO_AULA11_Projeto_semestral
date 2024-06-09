@@ -87,7 +87,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">REF</th>
                                 <th scope="col">CEP</th>
                                 <th scope="col">DORMITÓRIOS</th>
                                 <th scope="col">SUÍTE</th>
@@ -103,7 +102,6 @@
                         <tbody>
                             <template x-for="task in list">
                             <tr>
-                                <th></th>
                                 <td><span x-text="task.cd_imovel"></span></td>
                                 <td><span x-text="task.qt_sala_imovel"></span></td>
                                 <td><span x-text="task.qt_dormitorio_imovel"></span></td>
