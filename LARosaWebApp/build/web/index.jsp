@@ -11,6 +11,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>L.A.Rosa imóveis</title>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <%@include file="WEB-INF/jspf/html-head-libs.jspf"%>
         <style>
             body {
@@ -45,14 +46,43 @@
         </style>
     </head>
     <body>
-
+        <script>
+            async function request(url = "", methd, data) {
+                const response = await fetch(url, {
+                    method: methd,
+                    headers: {"Content-Type": "application/json", },
+                    body: JSON.stringify(data)
+                });
+                return response.json();
+            }
+            
+            function tasks() {
+                return {
+                    newTaskTitle: '',
+                    list: [],
+                    async loadTasks() {
+                        request("/LARosaWebApp/api/imovel", "GET").then((data) => {
+                            this.list = data.list;
+                        });
+                    }, async addTask() {
+                        request("/LARosaWebApp/api/imovel", "POST", { title: this.newTaskTitle }).then((data) => {
+                            this.newTaskTitle = '';
+                            this.list = data.list;
+                        });
+                    }, async removeTask(taskTitle) {
+                        request("/LARosaWebApp/api/imovel?id="+taskTitle, "DELETE").then((data) => {
+                            this.list = data.list
+                        });
+                    }
+                }
+            } 
+        </script>
         <div class="opacity-overlay"></div>
         <div class="content">
-            <%@include file="WEB-INF/jspf/header.jspf" %>
             <%@include file="WEB-INF/jspf/navbar.jspf" %>
             <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
-            <div id="app" class="container-fluid m-1">
                 <br>
+                <div class="container-fluid m-2" x-data="tasks()" x-init="loadTasks()">
                 <ul class="list-group list-group-flush">       
                     <table class="table">
                         <thead>
@@ -71,87 +101,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <template x-for="task in list">
                             <tr>
-                                <th scope="row">1</th>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1.000</td>
+                                <th></th>
+                                <td><span x-text="task.cd_imovel"></span></td>
+                                <td><span x-text="task.qt_sala_imovel"></span></td>
+                                <td><span x-text="task.qt_dormitorio_imovel"></span></td>
+                                <td><span x-text="task.qt_banheiro_imovel"></span></td>
+                                <td><span x-text="task.qt_cozinha_imovel"></span></td>
+                                <td><span x-text="task.qt_suite_imovel"></span></td>
+                                <td><span x-text="task.qt_quintal_imovel"></span></td>
+                                <td><span x-text="task.vl_imovel"></span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-info">Editar</button>
                                     <button type="button" class="btn btn-outline-danger">Deletar</button>
                                 </td>                        
                             </tr>
+                            </template>
                         </tbody>
                     </table>
                 </ul>
-            </div>   
+            </div>  
         </div>
-         <script>
-            const app = Vue.createApp({
-                imovel() {
-                    return {
-                        error: null,
-                        newCodigo: '', 
-                        newSala: 0, 
-                        newDormitorio: 0, 
-                        newBanheiro: 0, 
-                        newCozinha: 0, 
-                        newSuite: 0, 
-                        newQuintal: 0,
-                        newValor: 0.0,
-                        list: [],
-                    }
-                },
-                methods: {
-                    async request(url = "", method, imovel) {
-                        try{
-                            const response = await fetch(url, {
-                                method: method,
-                                headers: {"Content-Type": "application/json"},
-                                body: JSON.stringify(imovel)
-                            });
-                            if(response.status==200){
-                                return response.json();
-                            }else{
-                                this.error = response.statusText;
-                            }
-                        } catch(e){
-                            this.error = e;
-                            return null;
-                        }
-                    },
-                    async loadList() {
-                        const imovel = await this.request("/LARosaWebApp/api/imovel", "GET");
-                        if(imovel) {
-                            this.list = imovel.list;
-                        }
-                    },
-                    async addImovel() {
-                        const data = await this.request("/LARosaWebApp/api/imovel", "POST", {cd_imovel: this.newCodigo, qt_sala_imovel: this.newSala, qt_dormitorio_imovel: this.newDormitorio, qt_banheiro_imovel: this.newBanheiro, qt_cozinha_imovel: this.newCozinha, qt_suite_imovel: this.newSuite, qt_quintal_imovel: this.newQuintal, vl_imovel: this.newValor});
-                        if(imovel) {
-                            this.newCodigo = '';
-                            this.newSala = 0;
-                            this.newDormitorio = 0;
-                            this.newBanheiro = 0;
-                            this.newCozinha = 0;
-                            this.newSuite = 0;
-                            this.newQuintal = 0;
-                            this.newValor = 0.0;
-                            await this.loadList();
-                        }
-                    },
-                    
-                },
-                mounted() {
-                    this.loadList();
-                }
-            });
-            app.mount('#app');
-        </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
