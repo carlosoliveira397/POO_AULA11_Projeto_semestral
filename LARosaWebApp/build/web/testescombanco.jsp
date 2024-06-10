@@ -48,6 +48,35 @@
                     }
                 }
             }    
+            /*async function request(url = "", methd, data) {
+                const response = await fetch(url, {
+                    method: methd,
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(data)
+                });
+                return response.json();
+            }
+            request("http://localhost:8080/LARosaWebApp/api/imovel", "GET").then((data) => {
+                document.write("<h2>Tentativa de GET</h2><br>");
+                document.write(JSON.stringify(data));
+            });
+            request("http://localhost:8080/LARosaWebApp/api/imovel", "POST", {cd_imovel: "SegundaBatata", qt_sala_imovel: 1, qt_dormitorio_imovel: 2, qt_banheiro_imovel: 3, qt_cozinha_imovel: 4, qt_suite_imovel: 5, qt_quintal_imovel: 6, vl_imovel: 7000}).then((data) => {
+                document.write("<h2>Tentativa de POST</h2><br>");
+                document.write(JSON.stringify(data));
+            });
+            request("http://localhost:8080/LARosaWebApp/api/imovel", "GET").then((data) => {
+                document.write("<h2>Segunda Tentativa de GET</h2><br>");
+                document.write(JSON.stringify(data));
+            });
+            request("http://localhost:8080/LARosaWebApp/api/imovel?id=1", "DELETE").then((data) => {
+                document.write("<h2>Tentativa de DELETE</h2><br>");
+                document.write(JSON.stringify(data));
+            });
+            request("http://localhost:8080/LARosaWebApp/api/imovel", "GET").then((data) => {
+                document.write("<h2>Terceira Tentativa de GET</h2><br>");
+                document.write(JSON.stringify(data));
+            });
+*/
         </script>
          <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">

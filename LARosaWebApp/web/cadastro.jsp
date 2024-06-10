@@ -13,57 +13,6 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <title>L.A.Rosa imóveis - Cadastro</title>
         <style>
-            .radio-buttons-container {
-                display: flex;
-                align-items: center;
-                gap: 24px;
-                flex-wrap: wrap;
-            }
-            .radio-button {
-                display: inline-block;
-                position: relative;
-                cursor: pointer;
-            }
-            .radio-button__input {
-                position: absolute;
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-            .radio-button__label {
-                display: inline-block;
-                padding-left: 30px;
-                margin-bottom: 10px;
-                position: relative;
-                font-size: 16px;
-                color: #FFFFFF;
-                cursor: pointer;
-                transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-            }
-            .radio-button__custom {
-                position: absolute;
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%);
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                border: 2px solid #FFFFFF;
-                transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-            }
-            .radio-button__input:checked + .radio-button__label .radio-button__custom {
-                transform: translateY(-50%) scale(0.9);
-                border: 5px solid #FFE88A;
-                color: #FFE88A;
-            }
-            .radio-button__input:checked + .radio-button__label {
-                color: #FFE88A;
-            }
-            .radio-button__label:hover .radio-button__custom {
-                transform: translateY(-50%) scale(1.2);
-                border-color: #FFE88A;
-                box-shadow: 0 0 10px #FFE88A80;
-            }
             button {
                 position: relative;
                 border: none;
@@ -185,63 +134,6 @@
         </style>
     </head>
     <body>
-        <div class="opacity-overlay"></div>
-        <div class="content">
-            <%@include file="WEB-INF/jspf/navbar.jspf"%><br>
-            <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <h1 class="text-center">Cadastro de Imóveis</h1><br>
-                    <form id="imovelForm" action="ImovelServlet" method="post" class="needs-validation" novalidate>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
-                                <div class="invalid-feedback">Por favor, insira o CEP do imóvel.</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="dormitorios" name="dormitorios" placeholder="Dormitórios" required>
-                            <div class="invalid-feedback">Por favor, insira o número de dormitórios.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="suite" name="suite" placeholder="Suíte" required>
-                            <div class="invalid-feedback">Por favor, insira o número de suítes.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="sala" name="sala" placeholder="Sala" required>
-                            <div class="invalid-feedback">Por favor, insira o número de salas.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="banheiro" name="banheiro" placeholder="Banheiro" required>
-                            <div class="invalid-feedback">Por favor, insira o número de banheiros.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="cozinha" name="cozinha" placeholder="Cozinha" required>
-                            <div class="invalid-feedback">Por favor, insira o número de cozinhas.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="quintal" name="quintal" placeholder="Quintal" required>
-                            <div class="invalid-feedback">Por favor, insira informações sobre o quintal.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Imóvel" required>
-                            <div class="invalid-feedback">Por favor, insira o valor do imóvel.</div>
-                        </div>
-
-                        <div class="row justify-content-center">
-                            <div class="d-grid gap-2"> 
-                                <button>
-                                    <span class="shadow"></span>
-                                    <span class="edge"></span>
-                                    <span class="front text"> Salvar
-                                    </span>
-                                </button>
-                            </div>   
-                        </div>   
-                    </form>
-                </div>
-            </div>
-        </div>
         <script>
             async function request(url = "", methd, data) {
                 const response = await fetch(url, {
@@ -255,26 +147,96 @@
             function tasks() {
                 return {
                     newTaskTitle: '',
+                    newCep: '',
+                    newSala: '',
+                    newDorm: '',
+                    newBanh: '',
+                    newCozi: '',
+                    newSuite: '',
+                    newQuintal: '',
+                    newValor: '',
                     list: [],
                     async loadTasks() {
                         request("/LARosaWebApp/api/imovel", "GET").then((data) => {
                             this.list = data.list;
                         });
                     }, async addTask() {
-                        request("/LARosaWebApp/api/imovel", "POST", { title: this.newTaskTitle }).then((data) => {
+                        request("/LARosaWebApp/api/imovel", "POST", {cd_imovel: this.newCep, qt_sala_imovel: this.newSala, qt_dormitorio_imovel: this.newDorm, qt_banheiro_imovel: this.newBanh, qt_cozinha_imovel: this.newCozi, qt_suite_imovel: this.newSuite, qt_quintal_imovel: this.newQuintal, vl_imovel: this.newValor}).then((data) => {
                             this.newTaskTitle = '';
+                            this.newCep = '';
+                            this.newSala = '';
+                            this.newDorm = '';
+                            this.newBanh = '';
+                            this.newCozi = '';
+                            this.newSuite = '';
+                            this.newQuintal = '';
+                            this.newValor = '';
                             this.list = data.list;
                         });
                     }, async removeTask(taskTitle) {
                         request("/LARosaWebApp/api/imovel?id="+taskTitle, "DELETE").then((data) => {
-                            this.list = data.list
+                            this.list = data.list;
                         });
                     }
                 }
             } 
         </script>
+        <div class="opacity-overlay"></div>
+        <div class="content">
+            <%@include file="WEB-INF/jspf/navbar.jspf"%><br>
+            <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
+            <div x-data="tasks()" x-init="loadTasks()">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center">Cadastro de Imóveis</h1><br>
+                        <div class="form-group">
+                            <input type="text" class="form-control" x-model="newCep" id="cep" placeholder="CEP" required>
+                            <div class="invalid-feedback">Por favor, insira o CEP do imóvel.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" x-model="newDorm" id="dormitorios" placeholder="Dormitórios" required>
+                            <div class="invalid-feedback">Por favor, insira o número de dormitórios.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" x-model="newSuite" id="suite"  placeholder="Suíte" required>
+                            <div class="invalid-feedback">Por favor, insira o número de suítes.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" x-model="newSala" id="sala"  placeholder="Sala" required>
+                            <div class="invalid-feedback">Por favor, insira o número de salas.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" x-model="newBanh" id="banheiro" placeholder="Banheiro" required>
+                            <div class="invalid-feedback">Por favor, insira o número de banheiros.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" x-model="newCozi" id="cozinha"  placeholder="Cozinha" required>
+                            <div class="invalid-feedback">Por favor, insira o número de cozinhas.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" x-model="newQuintal" id="quintal"  placeholder="Quintal" required>
+                            <div class="invalid-feedback">Por favor, insira informações sobre o quintal.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" x-model="newValor" id="valor" placeholder="Valor do Imóvel" required>
+                            <div class="invalid-feedback">Por favor, insira o valor do imóvel.</div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="d-grid gap-2"> 
+                                <button x-on:click="addTask()">
+                                    <span class="shadow"></span>
+                                    <span class="edge"></span>
+                                    <span class="front text"> Salvar </span>
+                                </button>
+                            </div>   
+                        </div>   
+                </div>
+            </div>
+            </div>
+        </div>
         <script>
-            (function () {
+           /* (function () {
                 'use strict';
                 window.addEventListener('load', function () {
                     var forms = document.getElementsByClassName('needs-validation');
@@ -309,8 +271,9 @@
                     a = a.replace(".", ",");
                     a = a.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
                     e.target.value = a;
-                });
+                });*/
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
 
