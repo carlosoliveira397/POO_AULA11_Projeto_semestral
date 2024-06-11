@@ -58,32 +58,31 @@
             
             function tasks() {
                 return {
-                    newTaskTitle: '',
+                    delname: 'a',
                     list: [],
+                    
                     async loadTasks() {
                         request("/LARosaWebApp/api/imovel", "GET").then((data) => {
                             this.list = data.list;
                         });
-                    }, async addTask() {
-                        request("/LARosaWebApp/api/imovel", "POST", { title: this.newTaskTitle }).then((data) => {
-                            this.newTaskTitle = '';
-                            this.list = data.list;
-                        });
                     }, async removeTask(taskTitle) {
                         request("/LARosaWebApp/api/imovel?id="+taskTitle, "DELETE").then((data) => {
-                            this.list = data.list
+                            this.list = data.list;
                         });
-                    }
-                }
             } 
+        }
+    }
         </script>
         <div class="opacity-overlay"></div>
         <div class="content">
             <%@include file="WEB-INF/jspf/navbar.jspf" %>
             <%@include file="WEB-INF/jspf/html-body-libs.jspf" %>
                 <br>
-                <div class="container-fluid m-2" x-data="tasks()" x-init="loadTasks()">
-                <ul class="list-group list-group-flush">       
+                <div class="container-fluid m-2" x-data="tasks()" x-init="loadTasks()">  
+                 
+                    
+                <ul class="list-group list-group-flush"> 
+                    
                     <table class="table">
                         <thead>
                             <tr>
@@ -95,7 +94,8 @@
                                 <th scope="col">COZINHA</th>
                                 <th scope="col">QUINTAL</th>
                                 <th class="text-end" scope="col">VALOR</th>
-                                <th scope="col">EDITAR/DELETAR</th>
+                                <th scope="col">DELETAR</th>
+
 
                             </tr>
                         </thead>
@@ -111,9 +111,8 @@
                                 <td><span x-text="task.qt_quintal_imovel"></span></td>
                                 <td><span x-text="task.vl_imovel"></span></td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-info">Editar</button>
-                                    <button type="button" class="btn btn-outline-danger">Deletar</button>
-                                </td>                        
+                                    <button type="button" x-on:click="removeTask(task.cd_imovel)" class="btn btn-outline-danger">Deletar</button>
+                                </td>      
                             </tr>
                             </template>
                         </tbody>
