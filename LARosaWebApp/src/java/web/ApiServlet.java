@@ -91,7 +91,7 @@ public class ApiServlet extends HttpServlet {
             double vl_imovel = body.getDouble("vl_imovel");
             Imovel.updateImovel(cd_imovel, qt_sala_imovel, qt_dormitorio_imovel, qt_banheiro_imovel, qt_cozinha_imovel, qt_suite_imovel, qt_quintal_imovel, vl_imovel);
         }else if(request.getMethod().toLowerCase().equals("delete")){
-            Long id = Long.parseLong(request.getParameter("id"));
+            String id = (request.getParameter("id"));
             Imovel.deleteImovel(id);
         }else{
             response.sendError(405, "Method not allowed");

@@ -103,11 +103,11 @@ public class Imovel {
                 con.close();
     }
     
-    public static void deleteImovel(long rowid) throws Exception{
+    public static void deleteImovel(String cdimovel) throws Exception{
         Connection con = AppListener.getConnection();
-        String sql = "DELETE FROM imovel WHERE rowid = ?";
+        String sql = "DELETE FROM imovel WHERE cd_imovel = ?";
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setLong(1, rowid);
+        stmt.setString(1, cdimovel);
         stmt.execute();
         stmt.close();
         con.close();
